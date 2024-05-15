@@ -10,15 +10,16 @@ import pickle
 gym.register(
     id="FrozenLake-enhanced", # give it a unique id
     entry_point="frozen_lake_enhanced:FrozenLakeEnv", # frozen_lake_enhanced = name of file 'frozen_lake_enhanced.py'
-    kwargs={"map_name": "8x8"},
+    kwargs={"map_name": "10x10"},
     max_episode_steps=200,
     reward_threshold=0.85,  # optimum = 0.91
 )
 
 def run(episodes, is_training=True, render=False):
 
+
     # 'FrozenLake-enhanced' is the id specified above
-    env = gym.make('FrozenLake-enhanced', desc=None, map_name="8x8", is_slippery=True, render_mode='human' if render else None)
+    env = gym.make('FrozenLake-enhanced', desc=None, map_name="10x10", is_slippery=True, render_mode='human' if render else None)
 
     if(is_training):
         q = np.zeros((env.observation_space.n, env.action_space.n)) # init a 64 x 4 array
@@ -51,6 +52,7 @@ def run(episodes, is_training=True, render=False):
             if is_training:
                 q[state,action] = q[state,action] + learning_rate_a * (
                     reward + discount_factor_g * np.max(q[new_state,:]) - q[state,action]
+                    
                 )
 
             # pass the q table and episode count to the environment for rendering

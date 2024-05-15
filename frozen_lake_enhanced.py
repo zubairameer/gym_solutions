@@ -22,16 +22,18 @@ RIGHT = 2
 UP = 3
 
 MAPS = {
-    "4x4": ["SFFF", "FHFH", "FFFH", "HFFG"],
-    "8x8": [
-        "SFFFFFFF",
-        "FFFFFFFF",
-        "FFFHFFFF",
-        "FFFFFHFF",
-        "FFFHFFFF",
-        "FHHFFFHF",
-        "FHFFHFHF",
-        "FFFHFFFG",
+    "4x4": ["SFFF", "FHFH", "FFFH", "HFFG"], #Change the below values of the grid.
+    "10x10": [
+        "SFFFHHHHHH",
+        "FHHFHHHHHH",
+        "FHHFHHHHHH",
+        "FHHFHHHHHH",
+        "FHHFHHHHHH",
+        "FHHFHHHHHH",
+        "FHHFHHHHHH",
+        "FHHFHHHHHH",
+        "FHHFHHHHHH",
+        "FFFGHHHHHH",
     ],
 }
 
@@ -223,7 +225,7 @@ class FrozenLakeEnv(Env):
         self,
         render_mode: Optional[str] = None,
         desc=None,
-        map_name="4x4",
+        map_name="10x10",
         is_slippery=True,
     ):
         if desc is None and map_name is None:
@@ -431,12 +433,12 @@ class FrozenLakeEnv(Env):
                 pygame.image.load(file_name), self.cell_size
             )
         if self.ice_img is None:
-            file_name = path.join(path.dirname(__file__), "img/ice.png")
+            file_name = path.join(path.dirname(__file__), "img/gravel_road.png")
             self.ice_img = pygame.transform.scale(
                 pygame.image.load(file_name), self.cell_size
             )
         if self.goal_img is None:
-            file_name = path.join(path.dirname(__file__), "img/goal.png")
+            file_name = path.join(path.dirname(__file__), "img/house_goal.png")
             self.goal_img = pygame.transform.scale(
                 pygame.image.load(file_name), self.cell_size
             )
